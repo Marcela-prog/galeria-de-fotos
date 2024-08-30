@@ -8,9 +8,20 @@ $(document).ready(function() {
     })
 
     $('form').on('submit', function(e) {
-        e.preventDeFault();
+        e.preventDefault();
         const enderecoDaNovaImagem = $('#endereco-imagem-nova').val();
-        console.log(enderecoDaNovaImagem);
+        const novoItem = $('<li style="display: none"></li>');
+        $(`<img src="${enderecoDaNovaImagem}" />`).appendTo(novoItem);
+        $(`
+            <div class="overlay-imagem-link">
+                <a href="${enderecoDaNovaImagem}" target="_blank" title="Ver imagem em tamanho real">
+                    Ver imagem em tamanho real
+                </a>
+            </div>
+            `).appendTo(novoItem);
+            $(novoItem).appendTo('ul');
+            $(novoItem).fadeIn(5000);
+            $('#endereco-imagem-nova').val('')
     })
 })
 
